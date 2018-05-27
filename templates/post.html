@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="/css/pills.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/css/main.css">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.jpg"/>
+    <link ref="icon" href="../../img/favicon.jpg" />
+
+    <title>{TABTITLE}</title>
+
+    <meta name="description" {SUMMARY} />
+
+</head>
+
+
+<body>
+
+    <header></header>
+
+    <div class="header">
+        <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+
+        <div class="row">
+
+            <div class="two columns"></div>
+
+
+            <div class="eight columns">
+
+
+                <div class="above_article">
+
+
+                    {TITLE}
+                    {TIME}
+
+                </div>
+
+                <div id="bod" class="body_text">
+
+                    {BODY}
+
+
+                </div>
+
+            </div>
+
+            <div class="two columns">
+
+
+                <h2 class="tags_title">Tags</h2>
+
+                <div class="tags">
+
+                        {TAGS}
+
+                    </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        window.onscroll = function() {myFunction()};
+
+            function myFunction() {
+              var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+              var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+              var scrolled = (winScroll / height) * 100;
+              document.getElementById("myBar").style.width = scrolled + "%";
+            }
+
+
+    </script>
+
+
+    <footer></footer>
+
+
+</body>
+</html>
