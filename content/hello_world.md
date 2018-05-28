@@ -2,9 +2,9 @@
 ---START_METADATA---
 {
   "title": "Hello World!",
-  "author": "Ethan Houston",
-  "summary": "I'm just trying to see if my Python file works",
-  "date": "20 January 2018"
+  "author": "Author Name",
+  "summary": "Demonstrating a sample blog post!",
+  "date": "28 May 2018"
 }
 ---END_METADATA---
 
