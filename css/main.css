@@ -1,13 +1,3 @@
-
-@font-face {
-    font-family: vision;
-    src: url("https://ethanzh.github.io/fonts/vision/Vision.otf");
-}
-
-body {
-    font-family: vision;
-}
-
 div {
     border-style: dotted;
 }
