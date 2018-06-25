@@ -3,10 +3,6 @@ import os, errno, shutil
 import json
 import re
 import datetime
-import operator
-
-# TO-DO:
-# Create new directories for each post, name file 'index.html'
 
 DIRECTORY_NAME = os.path.basename(os.path.dirname(os.path.realpath(__file__)))  # Name of current directory
 CURRENT_DIR = dir_path = os.path.dirname(os.path.realpath(__file__))  # Full path to current directory
@@ -19,8 +15,22 @@ CURRENT_POST_NAMES = [os.path.join(os.path.dirname(os.path.abspath(__file__)), C
 markdown_file_locations = []
 
 for i in BLOG_FILE_NAMES:
-    if i[-2:] == "md":  # Finds all .md files in blog directory
+    if i[-2:] == "md" and i[-14:] != "information.md" and i[-11:] != "settings.md":  # Finds all .md files in blog directory
         markdown_file_locations.append(i)
+
+
+def parse_information():
+    with open("content/information.md", "r") as md_file:
+        metadata = md_file.read()
+        json_metadata = json.loads(metadata)
+        return json_metadata
+
+
+def parse_settings():
+    with open("content/settings.md", "r") as md_file:
+        metadata = md_file.read()
+        json_metadata = json.loads(metadata)
+        return json_metadata
 
 
 def get_template_html_as_text():
@@ -132,8 +142,20 @@ def create_index():
 
         new_html_contents = html_string.replace("{BLOG}", add_to_html)
 
+        new_html_contents = inject_personal_information(new_html_contents)
+
         new_html_file = open("index.html", "w")
         new_html_file.write(new_html_contents)
+
+
+def inject_personal_information(html_string):
+    personal_information = parse_information()
+
+    html_string = html_string.replace("{BLOG_TITLE}", personal_information["blog_title"])
+    html_string = html_string.replace("{DESCRIPTION}", personal_information["description"])
+    html_string = html_string.replace("{POSTS_TITLE}", personal_information["posts_title"])
+
+    return html_string
 
 
 class PostObject(object):
@@ -150,8 +172,6 @@ class PostObject(object):
 
 
 post_objects = []
-
-
 posts_exists = os.path.exists("posts/")
 
 if posts_exists:
@@ -162,7 +182,5 @@ for i in markdown_file_locations:  # Goes through locations and creates .html fi
     create_post_html(i)
 
 create_index()
-
-#print(sorted(post_time)[::-1])
 
 
